@@ -1,48 +1,79 @@
 package com.tfcai2020.model;
 
-import java.util.Date;
-
 import org.springframework.data.annotation.Id;
+import org.springframework.data.geo.Point;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Accident {
 
 	@Id
-	public String _id;
+	public String id;
 	
-	//Ciudad
-	public String path;
+	@Field("ID")
+	public String identificador;
 	
-	//Pais
-	//public String country;
+	@Field("City")
+	public String city;	
 	
-	//Estado
-	//public String state;
+	@Field("State")
+	public String state;
+		
+	@Field("start_location")	
+	public Point location;
 	
-	//Fecha
-	//public Date start_time;
+	public double distance;
+		
+	public Accident() {}
+	
+	public Accident(String id, String identificador, String city, String state) {
+		this.setId(id);
+		this.setIdentificador(identificador);
+		this.setCity(city);
+		this.setState(state);
+	}
+	
+	public Accident(String id, String identificador, double distance) {
+		this.setId(id);
+		this.setIdentificador(identificador);
+		this.setDistance(distance);
+	}
+	
+	/*@Field("Start_Time")
+	public String start_time;*/
+	
+	
+	//@GeoSpatialIndexed(type= GeoSpatialIndexType.GEO_2DSPHERE)
+	//public Point start_location;
+
+	/*public Accident(@Value("date") Date aDate, @Value("path") String aPath, @Value("city") String aCity) {
+		this.setDate(aDate);
+		this.setPath(aPath);
+		this.setCity(aCity);
+	}*/
+	
 
 	public String getId() {
-		return _id;
+		return this.id;
 	}
 
-	public void setId(String id) {
-		this._id = id;
+	public void setId(String anId) {
+		this.id = anId;
+	}
+	
+	public String getIdentificador() {
+		return identificador;
 	}
 
-	public String getPath() {
-		return path;
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public String getCity() {
+		return city;
 	}
 
-	/*public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getState() {
@@ -53,12 +84,36 @@ public class Accident {
 		this.state = state;
 	}
 
-	public Date getStart_time() {
+	public Point getLocation() {
+		return location;
+	}
+
+	public void setLocation(Point location) {
+		this.location = location;
+	}
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	
+	
+	
+	
+	
+	/*public String getStart_time() {
 		return start_time;
 	}
 
-	public void setStart_time(Date start_time) {
+	public void setStart_time(String start_time) {
 		this.start_time = start_time;
-	}	*/
+	}*/
+
 	
+	
+
 }

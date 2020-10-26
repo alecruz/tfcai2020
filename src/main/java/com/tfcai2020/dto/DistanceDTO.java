@@ -2,21 +2,18 @@ package com.tfcai2020.dto;
 
 import com.tfcai2020.model.Accident;
 
-public class AccidentDTO {
+public class DistanceDTO {
 
 	public String id;
 	
 	public String identificador;
 	
-	public String city;
+	public double distance;
 	
-	public String state;
-	
-	public AccidentDTO(Accident anAccident) {
+	public DistanceDTO(Accident anAccident) {
 		this.setId(anAccident.getId());
-		this.setCity(anAccident.getCity());
 		this.setIdentificador(anAccident.getIdentificador());
-		this.setState(anAccident.getState());
+		this.setDistance(anAccident.getDistance());
 	}
 	
 	public String getId() {
@@ -26,7 +23,7 @@ public class AccidentDTO {
 	public void setId(String anId) {
 		this.id = anId;
 	}
-	
+		
 	public String getIdentificador() {
 		return identificador;
 	}
@@ -35,21 +32,12 @@ public class AccidentDTO {
 		this.identificador = identificador;
 	}
 
-	public String getCity() {
-		return city;
+	public double getDistance() {
+		return distance;
 	}
 
-	public void setCity(String city) {
-		this.city = city;
+	public void setDistance(double distance) {
+		this.distance = distance;
 	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
 	
 }
