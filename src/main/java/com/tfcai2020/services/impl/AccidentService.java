@@ -11,6 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.tfcai2020.dto.AccidentDTO;
 import com.tfcai2020.dto.DistanceDTO;
+import com.tfcai2020.model.Accident;
+import com.tfcai2020.model.Common;
+import com.tfcai2020.model.Point;
 import com.tfcai2020.repository.AccidentRepository;
 import com.tfcai2020.services.IAccidentService;
 
@@ -33,6 +36,12 @@ public class AccidentService implements IAccidentService {
 		return result;
 	}		
 
+	
+	@Override
+	public List<Common> getAccidentsByCommonFeatures() {
+		return this.getAccidentRepository().findByCommonFeatures();
+	}
+	
 	@Override
 	public List<AccidentDTO> getAccidentsByLocation(double lat, double lon, double ratio) {
 		
@@ -45,11 +54,25 @@ public class AccidentService implements IAccidentService {
 		return result;
 	}
 	
+	
+	public List<Point> getAccidentsByDangerousPoints(double ratio) {		
+		List<Point> result = new ArrayList<Point>();
+		List<Accident> accidents = this.accidentRepository.findAll();			
+		Point p;			
+		for(Accident a : accidents) { 		
+			p = new Point(a.getId(), a.getIdentificador(), a.getLocation(), this.getAccidentRepository().findByLocationDangerousPoint(a.getLocation().getCoordinates()[1], a.getLocation().getCoordinates()[0], ratio * 1000).size()); 
+			result.add(p);
+		}		
+		return result;
+	}
+	
+	
 	@Override
 	public List<DistanceDTO> getAccidentsByAverageDistance() {
 		List<DistanceDTO> result = new ArrayList<DistanceDTO>();
 		this.getAccidentRepository().findByAverageDistance().stream().map(a -> new DistanceDTO(a))	
 		.collect(Collectors.toCollection(() -> result));	
+		System.out.println("#############2 " + result.size());
 		return result;
 	}
 	

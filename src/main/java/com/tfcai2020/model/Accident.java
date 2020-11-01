@@ -1,7 +1,6 @@
 package com.tfcai2020.model;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.geo.Point;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 public class Accident {
@@ -17,19 +16,20 @@ public class Accident {
 	
 	@Field("State")
 	public String state;
-		
+			
 	@Field("start_location")	
-	public Point location;
+	public Location location;
 	
 	public double distance;
 		
 	public Accident() {}
 	
-	public Accident(String id, String identificador, String city, String state) {
+	public Accident(String id, String identificador, String city, String state, Location location) {
 		this.setId(id);
 		this.setIdentificador(identificador);
 		this.setCity(city);
 		this.setState(state);
+		this.setLocation(location);
 	}
 	
 	public Accident(String id, String identificador, double distance) {
@@ -38,20 +38,6 @@ public class Accident {
 		this.setDistance(distance);
 	}
 	
-	/*@Field("Start_Time")
-	public String start_time;*/
-	
-	
-	//@GeoSpatialIndexed(type= GeoSpatialIndexType.GEO_2DSPHERE)
-	//public Point start_location;
-
-	/*public Accident(@Value("date") Date aDate, @Value("path") String aPath, @Value("city") String aCity) {
-		this.setDate(aDate);
-		this.setPath(aPath);
-		this.setCity(aCity);
-	}*/
-	
-
 	public String getId() {
 		return this.id;
 	}
@@ -84,14 +70,6 @@ public class Accident {
 		this.state = state;
 	}
 
-	public Point getLocation() {
-		return location;
-	}
-
-	public void setLocation(Point location) {
-		this.location = location;
-	}
-
 	public double getDistance() {
 		return distance;
 	}
@@ -100,20 +78,12 @@ public class Accident {
 		this.distance = distance;
 	}
 
-	
-	
-	
-	
-	
-	/*public String getStart_time() {
-		return start_time;
+	public Location getLocation() {
+		return location;
 	}
 
-	public void setStart_time(String start_time) {
-		this.start_time = start_time;
-	}*/
-
-	
-	
+	public void setLocation(Location location) {
+		this.location = location;
+	}	
 
 }
