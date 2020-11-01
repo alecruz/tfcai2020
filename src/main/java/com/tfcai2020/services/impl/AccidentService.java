@@ -47,8 +47,7 @@ public class AccidentService implements IAccidentService {
 		
 		List<AccidentDTO> result = new ArrayList<AccidentDTO>();
 		ratio *= 1000;
-		this.getAccidentRepository().findByLocation(lat, lon, ratio).stream().map(a -> new AccidentDTO(a))	
-		//this.getAccidentRepository().findByLocationNear(new Point(lat, lon), new Distance(5500, Metrics.KILOMETERS)).stream().map(a -> new AccidentDTO(a))
+		this.getAccidentRepository().findByLocation(lat, lon, ratio).stream().map(a -> new AccidentDTO(a))			
 		.collect(Collectors.toCollection(() -> result));	
 			
 		return result;
@@ -72,7 +71,6 @@ public class AccidentService implements IAccidentService {
 		List<DistanceDTO> result = new ArrayList<DistanceDTO>();
 		this.getAccidentRepository().findByAverageDistance().stream().map(a -> new DistanceDTO(a))	
 		.collect(Collectors.toCollection(() -> result));	
-		System.out.println("#############2 " + result.size());
 		return result;
 	}
 	
